@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f2ec" />
+  <title>cloth(ed) — your wardrobe, reimagined</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="cloth(ed) home">cloth<span>(ed)</span><i>.</i></a>
+      <p class="side-caption">YOUR PERSONAL STYLE SPACE</p>
+      <nav>
+        <button class="nav-link active" data-view="home"><span>⌂</span> Overview</button>
+        <button class="nav-link" data-view="wardrobe"><span>▦</span> My wardrobe <b id="nav-count">0</b></button>
+        <button class="nav-link" data-view="outfits"><span>✳</span> Outfit studio</button>
+        <button class="nav-link" data-view="calendar"><span>▤</span> Wear calendar</button>
+      </nav>
+      <div class="sidebar-note">
+        <span class="note-mark">✳</span>
+        <p>Wear what you own.<br><em>Love how you style it.</em></p>
+      </div>
+      <div class="side-footer">A LITTLE MORE YOU, EVERY DAY.</div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="mobile-brand">cloth<span>(ed)</span><i>.</i></div>
+        <div class="breadcrumb">YOUR SPACE <span>/</span> <b id="crumb">OVERVIEW</b></div>
+        <div class="top-actions"><span class="today-label" id="today-label"></span><span class="account-email" id="account-email"></span><span class="ai-provider-label" id="ai-provider-label">AI · LOCAL</span><button class="avatar" id="logout-button" title="Sign out">↗</button></div>
+      </header>
+
+      <section class="view active" id="view-home">
+        <div class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">YOUR STYLE, AT A GLANCE</p>
+            <h1>Good style starts<br>with <em>what you own.</em></h1>
+            <p class="hero-sub">A little space to see your wardrobe differently, find new combinations and make getting dressed feel good.</p>
+            <button class="button dark" data-go="wardrobe">Explore my wardrobe <span>↗</span></button>
+          </div>
+          <div class="hero-art">
+            <div class="art-stamp">THE<br>DAILY<br>EDIT</div>
+            <div class="art-shape shape-one"></div><div class="art-shape shape-two"></div>
+            <div class="art-label">PERSONAL STYLE JOURNAL · Nº 01</div>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div><p class="eyebrow">A QUICK LOOK</p><h2>Your wardrobe, in numbers.</h2></div>
+          <button class="text-button" data-go="wardrobe">View all items ↗</button>
+        </div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon">▦</span><strong id="stat-items">0</strong><span>Pieces in your closet</span></article>
+          <article class="stat-card"><span class="stat-icon">✳</span><strong id="stat-outfits">0</strong><span>Outfits saved</span></article>
+          <article class="stat-card"><span class="stat-icon">◷</span><strong id="stat-wears">0</strong><span>Days you've dressed up</span></article>
+          <article class="stat-card"><span class="stat-icon">♡</span><strong id="stat-unworn">0</strong><span>Pieces not worn yet</span></article>
+        </div>
+
+        <div class="section-heading"><div><p class="eyebrow">THE WARDROBE EDIT</p><h2>Know what you wear.</h2></div></div>
+        <div class="insight-grid" id="insight-grid">
+          <article class="insight-card"><span>FAVOURITES</span><strong id="insight-favourites">—</strong><small>pieces you marked</small></article>
+          <article class="insight-card"><span>REPEATED LOOKS</span><strong id="insight-repeats">—</strong><small>outfits worn more than once</small></article>
+          <article class="insight-card"><span>AVERAGE COST / WEAR</span><strong id="insight-cpw">—</strong><small>based on items with price and wear data</small></article>
+        </div>
+        <div class="insight-columns">
+          <div class="panel"><p class="eyebrow">LEAST WORN</p><h3>Give these another look.</h3><div id="least-worn-list" class="insight-list"><div class="empty-inline">Wear an outfit to start seeing insights.</div></div></div>
+          <div class="panel"><p class="eyebrow">MOST REPEATED OUTFITS</p><h3>Your reliable looks.</h3><div id="repeated-outfits-list" class="insight-list"><div class="empty-inline">Your repeat favourites will appear here.</div></div></div>
+        </div>
+
+        <div class="home-bottom">
+          <div class="panel recent-panel">
+            <div class="panel-heading"><div><p class="eyebrow">RECENT ADDITIONS</p><h3>Fresh in the closet</h3></div><button class="text-button" data-go="wardrobe">See all ↗</button></div>
+            <div id="recent-items" class="mini-items"><div class="empty-inline">Your next favourite piece belongs here.</div></div>
+          </div>
+          <div class="panel prompt-panel">
+            <p class="eyebrow">A NOTE TO SELF</p><div class="quote-mark">“</div>
+            <h3>Style isn't having more.<br><em>It's seeing more in what you have.</em></h3>
+            <p>Start by adding five pieces you reach for often.</p>
+            <button class="button outline" data-go="wardrobe">Build your closet <span>↗</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="view-wardrobe">
+        <div class="page-intro">
+          <div><p class="eyebrow">EVERY PIECE HAS POTENTIAL</p><h1>My wardrobe<span>.</span></h1><p class="muted">Your clothes, collected in one considered space.</p></div>
+          <button class="button dark" id="open-add">＋ Add a piece</button>
+        </div>
+        <div class="wardrobe-toolbar">
+          <div class="filter-tabs" id="filters">
+            <button class="filter active" data-filter="All">All pieces <span id="all-count">0</span></button>
+            <button class="filter" data-filter="Tops">Tops</button>
+            <button class="filter" data-filter="Bottoms">Bottoms</button>
+            <button class="filter" data-filter="Outerwear">Outerwear</button>
+            <button class="filter" data-filter="Footwear">Footwear</button>
+            <button class="filter" data-filter="Accessories">Accessories</button>
+            <button class="filter" data-filter="Other">Other</button><button class="filter" data-filter="Favorites">♡ Favorites</button>
+          </div>
+          <div class="attribute-filters">
+            <select class="field filter-select" id="filter-colour"><option value="">Any colour</option></select>
+            <select class="field filter-select" id="filter-style"><option value="">Any style</option></select>
+            <select class="field filter-select" id="filter-subcategory"><option value="">Any type</option></select>
+            <select class="field filter-select" id="filter-occasion"><option value="">Any occasion</option></select>
+            <button class="text-button" id="clear-filters" type="button">Clear filters</button>
+          </div>
+          <input class="search" id="search" placeholder="⌕  Search your closet" />
+        </div>
+        <div class="item-grid" id="item-grid"></div>
+      </section>
+
+      <section class="view" id="view-outfits">
+        <div class="page-intro">
+          <div><p class="eyebrow">PUT IT TOGETHER</p><h1>Outfit studio<span>.</span></h1><p class="muted">Play with pieces you already own. Save the combinations you love.</p></div>
+        </div>
+        <div class="studio-layout">
+          <div class="panel studio-picker">
+            <div class="panel-heading"><div><p class="eyebrow">YOUR PIECES</p><h3>Choose your look</h3></div><span class="small-muted">Select up to 6</span></div>
+            <div id="studio-items" class="studio-items"></div>
+          </div>
+          <div class="panel outfit-preview">
+            <p class="eyebrow">THE LOOK</p><h3>Your outfit, your rules.</h3>
+            <div id="outfit-canvas" class="outfit-canvas">
+              <div class="canvas-toolbar"><span>OUTFIT CANVAS</span><small>Drag pieces here or tap items to add</small></div>
+              <div id="selected-outfit" class="selected-outfit"><div class="preview-empty">Your canvas is waiting.<br>Choose or drag pieces from your wardrobe.</div></div>
+            </div>
+            <input id="outfit-name" class="field" placeholder="Give this look a name (e.g. Sunday in the city)" />
+            <button class="button dark full" id="save-outfit">Save this outfit ↗</button>
+          </div>
+        </div>
+        <div class="panel recommendation-panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">A LITTLE HELP FROM YOUR CLOSET</p><h3>Outfit ideas, made from your pieces</h3><p class="muted">Suggestions use your wardrobe, colour balance and recent wear history — no shopping required.</p></div>
+          </div>
+          <div class="recommend-controls">
+            <label>Style for
+              <select class="field" id="recommend-occasion">
+                <option value="">Any occasion</option><option>Casual</option><option>Work</option><option>Smart casual</option><option>Formal</option><option>Party</option><option>Travel</option><option>Ethnic</option>
+              </select>
+            </label>
+            <label>Weather
+              <select class="field" id="recommend-weather"><option value="">Any weather</option><option value="hot">Hot</option><option value="mild">Mild</option><option value="cold">Cold</option><option value="rainy">Rainy</option></select>
+            </label>
+            <button class="button dark" id="generate-recommendations">✳ Style me</button>
+          </div>
+          <p class="recommend-message" id="recommend-message">Generate combinations using pieces you already own.</p>
+          <div class="recommendation-grid" id="recommendation-grid"></div>
+        </div>
+        <div class="section-heading saved-heading"><div><p class="eyebrow">YOUR PERSONAL LOOKBOOK</p><h2>Saved outfits</h2></div></div>
+        <div class="saved-outfits" id="saved-outfits"></div>
+      </section>
+
+      <section class="view" id="view-calendar">
+        <div class="page-intro">
+          <div><p class="eyebrow">A RECORD OF YOUR EVERYDAY</p><h1>Wear diary<span>.</span></h1><p class="muted">Remember the looks, notice your repeats, rediscover forgotten favourites.</p></div>
+          <button class="button dark" id="log-wear">＋ Log an outfit</button>
+        </div>
+        <div class="calendar-layout">
+          <div class="panel calendar-panel">
+            <div class="calendar-head"><button id="prev-month">←</button><h3 id="month-title"></h3><button id="next-month">→</button></div>
+            <div class="calendar-grid" id="calendar-grid"></div>
+          </div>
+          <div class="panel diary-side"><p class="eyebrow">YOUR WEAR HISTORY</p><h3>Little style moments.</h3><div id="wear-list" class="wear-list"></div></div>
+        </div>
+        <div class="section-heading"><div><p class="eyebrow">GET TO KNOW YOUR CLOSET</p><h2>Most-loved pieces</h2></div></div>
+        <div class="most-worn" id="most-worn"></div>
+      </section>
+      <footer class="main-footer">MADE FOR THE LOVE OF GETTING DRESSED <span>cloth(ed) © 2026</span></footer>
+    </main>
+  </div>
+
+
+  <dialog id="auth-dialog" class="modal auth-modal">
+    <form id="auth-form" method="dialog">
+      <div class="auth-brand">cloth<span>(ed)</span><i>.</i></div>
+      <p class="eyebrow" id="auth-eyebrow">YOUR PERSONAL STYLE SPACE</p>
+      <h2 id="auth-title">Welcome back.</h2>
+      <p class="muted" id="auth-copy">Sign in to step back into your wardrobe.</p>
+      <label>Email address<input class="field" id="auth-email" type="email" autocomplete="email" required placeholder="you@example.com"></label>
+      <label>Password<input class="field" id="auth-password" type="password" autocomplete="current-password" minlength="8" required placeholder="At least 8 characters"></label>
+      <p class="auth-error" id="auth-error"></p>
+      <button class="button dark full" id="auth-submit" type="submit">Sign in ↗</button>
+      <button class="auth-switch" type="button" id="auth-switch">New here? Create an account</button>
+    </form>
+  </dialog>
+
+  <dialog id="add-dialog" class="modal">
+    <form id="add-form" method="dialog">
+      <div class="modal-head"><div><p class="eyebrow">A NEW ADDITION</p><h2>Add to your wardrobe</h2></div><button type="button" class="close" data-close>×</button></div>
+      <label class="upload-zone" for="item-image"><span class="upload-symbol">＋</span><strong>Drop a photo or browse</strong><small>JPG, PNG or WEBP · product photo or a person wearing an outfit</small><img id="image-preview" alt="Preview" /></label>
+      <input type="file" id="item-image" accept="image/jpeg,image/png,image/webp" hidden />
+      <div class="ai-assist-row">
+        <button class="button outline" type="button" id="analyze-item" disabled>✳ Identify with AI</button>
+        <button class="button outline" type="button" id="extract-outfit" disabled>✂ Extract clothes from outfit</button>
+        <span id="ai-status" aria-live="polite">Add a photo to enable AI identification.</span>
+      </div>
+      <div id="extracted-garments" class="extracted-garments" hidden></div>
+      <div class="form-grid">
+        <label>What should we call it?<input class="field" id="item-name" required placeholder="e.g. Blue relaxed-fit shirt"></label>
+        <label>Category<select class="field" id="item-category"><option>Tops</option><option>Bottoms</option><option>Outerwear</option><option>Footwear</option><option>Accessories</option><option>Other</option></select></label>
+        <label>Subcategory<input class="field" id="item-subcategory" placeholder="e.g. Oversized shirt"></label>
+        <label>Primary colour<input class="field" id="item-colour" placeholder="e.g. Navy blue"></label>
+        <label>Secondary colour<input class="field" id="item-secondary-colour" placeholder="Optional"></label>
+        <label>Pattern<input class="field" id="item-pattern" placeholder="e.g. Striped, solid"></label>
+        <label>Material<input class="field" id="item-material" placeholder="e.g. Linen (if known)"></label>
+        <label>Occasion<input class="field" id="item-occasion" placeholder="e.g. Everyday, work"></label>
+        <label>Brand <span class="optional">OPTIONAL</span><input class="field" id="item-brand" placeholder="e.g. Westside"></label>
+        <label>Style<select class="field" id="item-style"><option>Everyday</option><option>Casual</option><option>Smart casual</option><option>Formal</option><option>Streetwear</option><option>Ethnic</option><option>Occasion</option></select></label>
+        <label>Product code <span class="optional">OPTIONAL</span><input class="field" id="item-code" placeholder="Barcode / SKU"></label>
+        <label>Purchase price <span class="optional">OPTIONAL · ₹</span><input class="field" id="item-price" type="number" min="0" step="0.01" placeholder="e.g. 1499"></label>
+      </div>
+      <p class="ai-disclaimer">AI suggestions can be imperfect. Review the details before saving.</p>
+      <button class="button dark full" type="submit">Add to my closet ↗</button>
+    </form>
+  </dialog>
+
+  <dialog id="detail-dialog" class="modal detail-modal">
+    <form id="detail-form" method="dialog">
+      <div class="modal-head"><div><p class="eyebrow">YOUR WARDROBE</p><h2 id="detail-title">Piece details</h2></div><button type="button" class="close" data-close>×</button></div>
+      <div class="detail-layout">
+        <div class="detail-photo-wrap"><img id="detail-image-preview" alt="Clothing item preview"><label class="button outline" for="detail-image">Change photo</label><input type="file" id="detail-image" accept="image/jpeg,image/png,image/webp" hidden></div>
+        <div class="form-grid detail-fields">
+          <label>Name<input class="field" id="edit-name" required maxlength="120"></label>
+          <label>Category<select class="field" id="edit-category"><option>Tops</option><option>Bottoms</option><option>Outerwear</option><option>Footwear</option><option>Accessories</option><option>Other</option></select></label>
+          <label>Subcategory<input class="field" id="edit-subcategory"></label>
+          <label>Primary colour<input class="field" id="edit-colour"></label>
+          <label>Secondary colour<input class="field" id="edit-secondary-colour"></label>
+          <label>Pattern<input class="field" id="edit-pattern"></label>
+          <label>Material<input class="field" id="edit-material"></label>
+          <label>Occasion<input class="field" id="edit-occasion"></label>
+          <label>Brand<input class="field" id="edit-brand"></label>
+          <label>Style<select class="field" id="edit-style"><option>Everyday</option><option>Casual</option><option>Smart casual</option><option>Formal</option><option>Streetwear</option><option>Ethnic</option><option>Occasion</option></select></label>
+          <label>Product code<input class="field" id="edit-product-code"></label>
+          <label>Purchase price (₹)<input class="field" id="edit-purchase-price" type="number" min="0" step="0.01"></label>
+          <label class="detail-notes">Notes<textarea class="field" id="edit-notes" rows="3"></textarea></label>
+        </div>
+      </div>
+      <div class="detail-actions"><button class="button outline" type="button" id="delete-detail">Delete piece</button><button class="button dark" type="submit">Save changes ↗</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="wear-dialog" class="modal compact-modal">
+    <form id="wear-form" method="dialog">
+      <div class="modal-head"><div><p class="eyebrow">TODAY'S LOOK</p><h2>Log what you wore</h2></div><button type="button" class="close" data-close>×</button></div>
+      <label>Date<input class="field" id="wear-date" type="date" required></label>
+      <label>Outfit<select class="field" id="wear-outfit"><option value="">Choose a saved outfit</option></select></label>
+      <p class="wear-repeat-hint" id="wear-repeat-hint" aria-live="polite">Choose an outfit to check its wear history.</p>
+      <label>Or add a note<input class="field" id="wear-note" placeholder="e.g. White tee + blue jeans"></label>
+      <button class="button dark full" type="submit">Add to my diary ↗</button>
+    </form>
+  </dialog>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
